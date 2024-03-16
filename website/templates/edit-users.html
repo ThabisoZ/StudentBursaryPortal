@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User</h1>
+    <form action="{{ url_for('edit_user', user_id=user.id) }}" method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required><br>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="admin" {% if user.role == 'admin' %} selected {% endif %}>Admin</option>
+            <option value="sponsor" {% if user.role == 'sponsor' %} selected {% endif %}>Sponsor</option>
+            <option value="student" {% if user.role == 'student' %} selected {% endif %}>Student</option>
+        </select><br>
+
+        <!-- Add other user fields as needed -->
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
