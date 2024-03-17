@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Opportunity</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+         header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .opportunity {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .opportunity h2 {
+            margin-bottom: 10px;
+        }
+        .opportunity p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<header>
+  <nav>
+      <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/post">Back to post</a></li>
+          <!--<li><a href="/manage_users">manage_users</a></li>-->
+          <!--<li><a href="/admin_dashboard">admindash</a></li>-->
+          <li style="float:right"><a href="/logout">Logout</a></li>
+      </ul>
+  </nav>
+</header
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <div class="container">
+        {% if opportunity %}
+            <div class="opportunity">
+                <h1>{{ opportunity.title }}</h1>
+                <p><strong>Type:</strong> {{ opportunity.type }}</p>
+                <p><strong>Description:</strong> {{ opportunity.description }}</p>
+                <p><strong>Location:</strong> {{ opportunity.location }}</p>
+                <p><strong>Deadline:</strong> {{ opportunity.deadline }}</p>
+                <a href="{{ url_for('views.manage_opportunities') }}" class="btn btn-primary">Back to Manage Opportunities</a>
+            </div>
+        {% else %}
+            <p>Opportunity not found or you do not have permission to view it.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

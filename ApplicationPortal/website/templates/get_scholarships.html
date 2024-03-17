@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships</title>
+    <style>
+         header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .opportunity {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .opportunity {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/index">Opportunities</a></li>
+            <li><a href="/about">About</a></li>
+            <li style="float:right"><a href="/logout">Logout</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+</header>
+<body>
+    <h1>Scholarships</h1>
+    <div class="opportunities">
+        {% for scholarship in scholarships %}
+            <div class="opportunity">
+                <h2>{{ scholarship.title }}</h2>
+                <p>{{ scholarship.description }}</p>
+                <p>Deadline: {{ scholarship.deadline }}</p>
+                <p>Location: {{ scholarship.location }}</p>
+                <!-- Add more fields as needed -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

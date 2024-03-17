@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bursary Portal</title>
+    <style>
+         /* CSS for navigation bar */
+         nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/sign_Up">Sign-Up</a></li>
+        <!--<li  style="float:right"><a href="/admin_sign_up">admin sign-up</a></li>-->
+    </ul>
+</nav>
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <div class="container">
+        <h2>Login to Bursary Portal</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="sign_Up">Sign up here</a></p>
+            <p>Forgot password? <a href="/forgot_password">Reset password here!</a></p>
+        </div>
+    </div>
+</body>
+</html>

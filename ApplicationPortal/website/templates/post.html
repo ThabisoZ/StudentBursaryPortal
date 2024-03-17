@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunities for Students</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        section {
+            width: 70%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        aside {
+            width: 25%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .opportunity,
+        .note {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Adjustments for smaller screens */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+
+            section,
+            aside {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/writereview">write review</a></li>
+                <li><a href="/viewreviews">Read review</a></li>
+                <li><a href="/manage_opportunities">Manage opportunities</a></li>
+                <li><a href="/notes">Read students Messages</a></li>
+                <!--<li><a href="/manage_users">manage_users</a></li>-->
+                <!--<li><a href="/admin_dashboard">admindash</a></li>-->
+                <li style="float:right"><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+    <main>
+        <section id="opportunities">
+            <div class="opportunity-list">
+                <!-- Post Opportunity Form -->
+                <div class="container">
+                    <h1 class="text-center mb-4">Post Opportunity</h1>
+                    <form action="#" method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="Bursary">Bursary</option>
+                                <option value="Scholarship">Scholarship</option>
+                                <option value="Grant">Grant</option>
+                                <option value="Learnership">Learnership</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" name="location" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deadline" class="form-label">Deadline</label>
+                            <input type="date" class="form-control" id="deadline" name="deadline" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- End Post Opportunity Form -->
+            </div>
+        </section>
+        <aside id="notes">
+            <h1>Notes</h1>
+            <div id="note-list">
+                {% for note in notes %}
+                <div class="note">
+                    <p>{{ note.note }}</p>
+                    <p>Timestamp: {{ note.timestamp }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </aside>
+        
+       
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Website</p>
+    </footer>
+
+    <!-- Bootstrap JS (optional, if you need dropdowns or other interactive components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-XV4UjBYFzROJCJ+gcvzg1NHqLZI1/ZV4S6o5Xnn5u5vzkHHZDaxX00+nXvyYp+A/" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk+ew5W24pNXJZ2zn6E+4pDwEL4U/R1tvJx" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+

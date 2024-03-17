@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* CSS for navigation bar */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/sign_Up">Sign-Up</a></li>
+        <!--<li  style="float:right"><a href="/admin_sign_up">admin sign-up</a></li>-->
+    </ul>
+</nav>
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<body>
+    <div class="container">
+        <h2>Sign-up here!!!</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="firstname" required>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="phonenumber">Phone Number</label>
+                <input type="text" id="phonenumber" name="phonenumber" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="">Select</option>
+                    <option value="student">Student</option>
+                    <option value="sponsor">Sponsor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign Up">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
